@@ -7,32 +7,28 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import marvel.api.marvelcharacters.data.model.Results
 import marvel.api.marvelcharacters.data.source.local.MarvelDatabase
+import marvel.api.marvelcharacters.data.source.local.dao.ResultDao
 import marvel.api.marvelcharacters.data.source.remote.ApiService
 import marvel.api.marvelcharacters.repository.CharacterListRepository
+import javax.inject.Inject
 
 /**
  * Created by Jeeban Bagdi on 1/28/2022.
  */
 @ExperimentalPagingApi
-class CharacterListViewModel(): ViewModel() {
+@HiltViewModel
+class CharacterListViewModel @Inject constructor(val resultDao: ResultDao): ViewModel() {
 
     fun getCharacters(): Flow<PagingData<Results>>{
         return CharacterListRepository.getMarvelCharacters().cachedIn(viewModelScope)
     }
 
-    fun getResults(apiService: ApiService, marvelDatabase: MarvelDatabase): Flow<PagingData<Results>>{
-        return CharacterListRepository.getResults(apiService, marvelDatabase).cachedIn(viewModelScope)
-    }
-
-    fun getCharacters(apiService: ApiService, marvelDatabase: MarvelDatabase): Flow<PagingData<Results>>{
-        return CharacterListRepository.getCharcters(apiService, marvelDatabase).cachedIn(viewModelScope)
-    }
-
-    fun getMarvels(apiService: ApiService, marvelDatabase: MarvelDatabase): Flow<PagingData<Results>>{
-        return CharacterListRepository.getMarvels(apiService, marvelDatabase).cachedIn(viewModelScope)
+    fun getMarvels(): Flow<PagingData<Results>>{
+        return CharacterListRepository.getMarvels(resultDao).cachedIn(viewModelScope)
     }
 }

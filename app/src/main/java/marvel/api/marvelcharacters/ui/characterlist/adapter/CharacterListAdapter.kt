@@ -55,7 +55,7 @@ class CharacterListAdapter(private val onItemClickListener: OnItemClickListener)
     override fun onBindViewHolder(holder: CharcterViewHolder, position: Int) {
         holder.bind(getItem(position))
         holder.binding.cvItem.setOnClickListener {
-            onItemClickListener.onItemClick(getItem(position)!!)
+            onItemClickListener.onItemClick(getItem(position)!!, holder.binding.ivCharacter)
         }
     }
 

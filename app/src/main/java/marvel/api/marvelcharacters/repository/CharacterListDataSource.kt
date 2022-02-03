@@ -2,18 +2,23 @@ package marvel.api.marvelcharacters.repository
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import dagger.hilt.android.AndroidEntryPoint
 import marvel.api.marvelcharacters.data.model.Data
 import marvel.api.marvelcharacters.data.model.Results
 import marvel.api.marvelcharacters.data.source.local.MarvelDatabase
 import marvel.api.marvelcharacters.data.source.remote.ApiClient
+import marvel.api.marvelcharacters.data.source.remote.ApiService
 import marvel.api.marvelcharacters.utils.AppConfig
 import marvel.api.marvelcharacters.utils.AppConstant
 import java.sql.Timestamp
+import javax.inject.Inject
 
 /**
  * Created by Jeeban Bagdi on 1/30/2022.
  */
 class CharacterListDataSource: PagingSource<Int, Results>() {
+
+    @Inject lateinit var apiService: ApiService
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Results> {
         try {

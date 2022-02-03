@@ -38,9 +38,11 @@
         android:name="marvel.api.marvelcharacters.ui.characterdetail.CharacterDetailFragment"
         android:label="CharacterDetailFragment"
         tools:layout="@layout/fragment_char_detail">
+
         <argument
             android:name="result"
             app:argType="marvel.api.marvelcharacters.data.model.Results" />
+
     </fragment>
 
 </navigation>

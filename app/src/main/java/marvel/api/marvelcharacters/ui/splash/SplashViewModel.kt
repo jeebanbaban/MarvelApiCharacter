@@ -4,6 +4,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.launch
 
 /**
@@ -11,12 +14,8 @@ import kotlinx.coroutines.launch
  */
 class SplashViewModel: ViewModel() {
 
-    var isTimeCompleted: MutableLiveData<String> = MutableLiveData()
-
-    fun initSplashScreen(){
-        viewModelScope.launch {
-            delay(3000)
-            isTimeCompleted.value = String()
-        }
+    fun isSplashTimeCompleted() = flow {
+        delay(3000)
+        emit(true)
     }
 }

@@ -19,6 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:transitionName="image_detail"
         app:characterImage="@{results.thumbnail.path+`.`+results.thumbnail.extension}"/>
 
     <LinearLayout
@@ -31,6 +32,8 @@
             android:id="@+id/tvCharacterName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:transitionName="char_name"
+            android:textColor="@color/marvel_dark"
             android:textSize="18sp"
             android:textStyle="bold"
             android:text="@{results.name}"/>
@@ -40,6 +43,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:transitionName="char_desc"
+            android:textSize="15sp"
             android:text="@{results.description}"/>
     </LinearLayout>
 
